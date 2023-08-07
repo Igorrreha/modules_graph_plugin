@@ -2,4 +2,4 @@ class_name MgpCellVisualizationSettings
 extends Resource
 
 
-@export var stylebox: StyleBoxFlat
+@export var content_tscn: PackedScene

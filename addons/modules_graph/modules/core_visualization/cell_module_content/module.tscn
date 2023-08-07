@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://clylbgkcvbfd7"]
+
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization/cell_module_content/module.gd" id="1_kws51"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h52fa"]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.905882, 0.54902, 0.576471, 1)
+border_blend = true
+
+[node name="Module" type="MarginContainer" node_paths=PackedStringArray("_name_label")]
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+script = ExtResource("1_kws51")
+_name_label = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_h52fa")
+horizontal_alignment = 1

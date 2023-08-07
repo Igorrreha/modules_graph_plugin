@@ -11,6 +11,12 @@ func _ready() -> void:
 
 
 func _on_cell_content_setted(cell: MgpCell) -> void:
-	var settings = (_visualization_settings_pack
+	var settings: = (_visualization_settings_pack
 		.get_resource(cell.content.tag) as MgpCellVisualizationSettings)
-	cell.add_theme_stylebox_override("panel", settings.stylebox)
+	
+	if not settings.content_tscn:
+		return
+	
+	var content_node = settings.content_tscn.instantiate()
+	content_node.setup(cell.content)
+	cell.add_content_node(content_node)
