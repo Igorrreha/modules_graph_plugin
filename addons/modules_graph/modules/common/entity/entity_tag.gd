@@ -1,2 +1,2 @@
-class_name MgpEntityTag
+class_name EntityTag
 extends Resource

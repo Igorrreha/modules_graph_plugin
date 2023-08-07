@@ -3,6 +3,7 @@ extends GridContainer
 
 
 @export var _cell_tscn: PackedScene
+@export var _table_position_extension_script: Script
 
 var _rows: = 0
 var _items: Array
@@ -14,12 +15,17 @@ func update(items: Array) -> void:
 			add_item(item)
 
 
-func add_item(item: Variant) -> void:
+func add_item(item: Entity) -> void:
 	_items.append(item)
 	
-	var empty_cell = _try_get_empty_cell()
-	if empty_cell:
-		empty_cell.set_content(item)
+	var table_position = item.extensions.get(_table_position_extension_script)
+	if table_position:
+		set_content(item, table_position.position)
+		return
+	
+	var empty_cell_position = _try_get_empty_cell_position()
+	if empty_cell_position != Vector2i.ZERO:
+		set_content(item, empty_cell_position)
 		return
 	
 	var content_position = (Vector2i(columns + 1, 1) if columns <= _rows
@@ -27,22 +33,26 @@ func add_item(item: Variant) -> void:
 	set_content(item, content_position)
 
 
-func set_content(content: Variant, position: Vector2i) -> void:
+func set_content(content: Entity, position: Vector2i) -> void:
 	if columns < position.x or _rows < position.y:
 		_update_size(Vector2i(max(columns, position.x), max(_rows, position.y)))
 	
 	var child_idx = position.x - 1 + ((position.y - 1) * columns)
 	var cell = get_child(child_idx) as MgpCell
 	cell.set_content(content)
-
-
-func _try_get_empty_cell() -> MgpCell:
-	for child_idx in range(get_child_count()):
-		var child = get_child(child_idx)
-		if child.is_empty():
-			return child
 	
-	return null
+	var extension = MgpTablePositionExtension.new(position)
+	content.extensions[_table_position_extension_script] = extension
+
+
+func _try_get_empty_cell_position() -> Vector2i:
+	for row_idx in range(_rows):
+		for column_idx in range(columns):
+			var child = get_child(row_idx * columns + column_idx)
+			if child.is_empty():
+				return Vector2i(column_idx + 1, row_idx + 1)
+	
+	return Vector2i.ZERO
 
 
 func _update_size(new_size: Vector2i) -> void:

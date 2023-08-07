@@ -3,7 +3,7 @@ extends PanelContainer
 
 
 @export var _signals_channel: MgpCellSignalsChannel
-var content: MgpEntity
+var content: Entity
 var _content_node: Node
 
 
@@ -11,7 +11,7 @@ func is_empty() -> bool:
 	return not content;
 
 
-func set_content(content: MgpEntity) -> void:
+func set_content(content: Entity) -> void:
 	self.content = content
 	if _content_node:
 		_content_node.queue_free()

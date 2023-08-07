@@ -1,7 +1,15 @@
-[gd_resource type="Resource" script_class="MgpModule" load_steps=2 format=3 uid="uid://81ngd1also38"]
+[gd_resource type="Resource" script_class="MgpModule" load_steps=4 format=3]
 
-[ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_mevuu"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization/table_position_extension/table_position_extension.gd" id="1_262o0"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_pc146"]
+
+[sub_resource type="Resource" id="Resource_dx8rm"]
+script = ExtResource("1_262o0")
+position = Vector2i(3, 2)
 
 [resource]
 resource_name = "resources_from_fs_loader"
-script = ExtResource("1_mevuu")
+script = ExtResource("1_pc146")
+extensions = {
+null: SubResource("Resource_dx8rm")
+}

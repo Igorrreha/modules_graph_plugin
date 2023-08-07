@@ -1,5 +1,5 @@
 class_name MgpModulesRelation
-extends MgpEntity
+extends Entity
 
 
 @export var _module_from: MgpModule

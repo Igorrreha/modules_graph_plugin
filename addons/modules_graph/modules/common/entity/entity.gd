@@ -1,6 +1,6 @@
-class_name MgpEntity
+class_name Entity
 extends Resource
 
 
-@export var tag: MgpEntityTag
-@export var extensions: Dictionary
+@export var tag: EntityTag
+@export var extensions: Dictionary#[Script, Resource]

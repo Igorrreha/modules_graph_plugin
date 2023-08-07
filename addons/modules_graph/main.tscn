@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://1d08ptwy7fsl"]
+[gd_scene load_steps=12 format=3 uid="uid://1d08ptwy7fsl"]
 
 [ext_resource type="PackedScene" uid="uid://82421gtvhh2x" path="res://addons/modules_graph/modules/core_visualization/table/table.tscn" id="1_jvc06"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization/cell_content_visualizer/cell_content_visulaizer.gd" id="1_ycry1"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://addons/modules_graph/modules/common/resources_from_fs_loader/resources_from_fs_loader.gd" id="7_dgws0"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/common/reactive_collection_filler/reactive_collection_filler.gd" id="8_8qwih"]
 [ext_resource type="Resource" uid="uid://d0qo4wf7es2dy" path="res://addons/modules_graph/modules/core/modules_reactive_collection/modules_reactive_collection.tres" id="9_linrs"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/common/resources_saver/resources_saver.gd" id="9_tcjgn"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/common/action_press_handler/action_press_handler.gd" id="10_wmmnl"]
 
 [sub_resource type="GDScript" id="GDScript_0rjxc"]
 resource_name = "main"
@@ -54,5 +56,14 @@ _root_dir_path = "res://addons/modules_graph/modules"
 script = ExtResource("8_8qwih")
 _collection = ExtResource("9_linrs")
 
+[node name="ResourcesSaver" type="Node" parent="."]
+script = ExtResource("9_tcjgn")
+_collection = ExtResource("9_linrs")
+
+[node name="ActionPressHandler" type="Node" parent="ResourcesSaver"]
+script = ExtResource("10_wmmnl")
+_action = &"ui_accept"
+
 [connection signal="collection_updated" from="ModulesCollectionUpdateListener" to="ScrollContainer/Table" method="update"]
 [connection signal="resource_loaded" from="ResourcesFromFsLoading/ResourcesLoader" to="ResourcesFromFsLoading/ModulesCollectionFiller" method="add_item"]
+[connection signal="action_pressed" from="ResourcesSaver/ActionPressHandler" to="ResourcesSaver" method="save"]

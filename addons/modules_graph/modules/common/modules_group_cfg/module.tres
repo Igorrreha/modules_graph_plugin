@@ -1,7 +1,15 @@
-[gd_resource type="Resource" script_class="MgpModule" load_steps=2 format=3 uid="uid://bf50p8ebrhnxv"]
+[gd_resource type="Resource" script_class="MgpModule" load_steps=4 format=3]
 
-[ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_x4wos"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_cg21l"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization/table_position_extension/table_position_extension.gd" id="1_eufsm"]
+
+[sub_resource type="Resource" id="Resource_8vovf"]
+script = ExtResource("1_eufsm")
+position = Vector2i(1, 2)
 
 [resource]
 resource_name = "modules_group_cfg"
-script = ExtResource("1_x4wos")
+script = ExtResource("1_cg21l")
+extensions = {
+null: SubResource("Resource_8vovf")
+}

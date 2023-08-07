@@ -1,7 +1,15 @@
-[gd_resource type="Resource" script_class="MgpModule" load_steps=2 format=3 uid="uid://bt7weloei7lhc"]
+[gd_resource type="Resource" script_class="MgpModule" load_steps=4 format=3]
 
-[ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_ywqcw"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_26xr7"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization/table_position_extension/table_position_extension.gd" id="1_m03yh"]
+
+[sub_resource type="Resource" id="Resource_rkaab"]
+script = ExtResource("1_m03yh")
+position = Vector2i(2, 4)
 
 [resource]
 resource_name = "cell"
-script = ExtResource("1_ywqcw")
+script = ExtResource("1_26xr7")
+extensions = {
+null: SubResource("Resource_rkaab")
+}

@@ -1,3 +1,3 @@
 class_name MgpModule
-extends MgpEntity
+extends Entity
 
