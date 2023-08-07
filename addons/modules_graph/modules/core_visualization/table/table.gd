@@ -15,12 +15,16 @@ func update(items: Array) -> void:
 
 
 func add_item(item: Variant) -> void:
+	_items.append(item)
+	
 	var empty_cell = _try_get_empty_cell()
 	if empty_cell:
 		empty_cell.set_content(item)
 		return
 	
-	set_content(item, Vector2i(0, _rows + 1))
+	var content_position = (Vector2i(columns + 1, 1) if columns <= _rows
+		else Vector2i(1, _rows + 1))
+	set_content(item, content_position)
 
 
 func set_content(content: Variant, position: Vector2i) -> void:
