@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MgpModule" load_steps=3 format=3 uid="uid://3fhdqfyjb45i"]
+
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_5sl0e"]
+[ext_resource type="Resource" uid="uid://hiu3kuilpycn" path="res://addons/modules_graph/modules/core/abstract_module/entity_tag.tres" id="2_tep77"]
+
+[resource]
+resource_name = "abstract"
+script = ExtResource("1_5sl0e")
+tag = ExtResource("2_tep77")

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ResourcesReactiveCollection" load_steps=3 format=3 uid="uid://d0qo4wf7es2dy"]
+
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_gw5df"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/common/resources_reactive_collection/resources_reactive_collection.gd" id="2_ypec0"]
+
+[resource]
+script = ExtResource("2_ypec0")
+item_script = ExtResource("1_gw5df")
+resources = Array[Resource]([])

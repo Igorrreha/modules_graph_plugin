@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="MgpModulesGroup" load_steps=2 format=3 uid="uid://c6dqw3rweqyod"]
+
+[ext_resource type="Script" path="res://addons/modules_graph/modules/common/modules_group_cfg/modules_group.gd" id="1_11juj"]
+
+[resource]
+resource_name = "common"
+script = ExtResource("1_11juj")

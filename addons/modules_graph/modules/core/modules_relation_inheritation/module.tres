@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="MgpModule" load_steps=2 format=3 uid="uid://t0j6cg5d576j"]
+
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_w1qvt"]
+
+[resource]
+resource_name = "modules_relation_inheritation"
+script = ExtResource("1_w1qvt")

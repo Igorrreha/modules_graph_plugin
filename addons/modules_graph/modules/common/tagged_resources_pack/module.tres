@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="MgpModule" load_steps=2 format=3 uid="uid://bftd1t4msxbf8"]
+
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_gdy78"]
+
+[resource]
+resource_name = "tagged_resources_pack"
+script = ExtResource("1_gdy78")

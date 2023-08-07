@@ -1,0 +1,2 @@
+class_name MgpModulesGroup
+extends Resource

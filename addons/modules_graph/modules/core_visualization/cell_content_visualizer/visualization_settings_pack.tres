@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="MgpTaggedResourcesPack" load_steps=10 format=3 uid="uid://bx8og6yr5rjyb"]
+
+[ext_resource type="Script" path="res://addons/modules_graph/modules/common/tagged_resources_pack/tagged_resources_pack.gd" id="1_cjfgh"]
+[ext_resource type="Resource" uid="uid://ci8mqbwuague4" path="res://addons/modules_graph/modules/core_visualization/cell_content_visualizer/visualization_settings/round_rect.tres" id="1_m5ai5"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/common/tagged_resources_pack/tagged_resource.gd" id="2_ymppg"]
+[ext_resource type="Resource" uid="uid://hiu3kuilpycn" path="res://addons/modules_graph/modules/core/abstract_module/entity_tag.tres" id="3_415ef"]
+[ext_resource type="Resource" uid="uid://d071rblbgkwc7" path="res://addons/modules_graph/modules/core_visualization/cell_content_visualizer/visualization_settings/bold_rect.tres" id="4_ysvmg"]
+[ext_resource type="Resource" uid="uid://cycu173vdp286" path="res://addons/modules_graph/modules/core/concrete_module/entity_tag.tres" id="5_w02dw"]
+
+[sub_resource type="Resource" id="Resource_kfhy1"]
+script = ExtResource("2_ymppg")
+tag = ExtResource("3_415ef")
+resource = ExtResource("1_m5ai5")
+
+[sub_resource type="Resource" id="Resource_1p62b"]
+script = ExtResource("2_ymppg")
+tag = ExtResource("5_w02dw")
+resource = ExtResource("4_ysvmg")
+
+[sub_resource type="Resource" id="Resource_880pu"]
+script = ExtResource("2_ymppg")
+resource = ExtResource("4_ysvmg")
+
+[resource]
+script = ExtResource("1_cjfgh")
+_resources = Array[ExtResource("2_ymppg")]([SubResource("Resource_kfhy1"), SubResource("Resource_1p62b"), SubResource("Resource_880pu")])

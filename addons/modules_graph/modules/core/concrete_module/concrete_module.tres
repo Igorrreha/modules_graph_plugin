@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MgpModule" load_steps=3 format=3 uid="uid://baxykt8wio1dt"]
+
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_uidr7"]
+[ext_resource type="Resource" uid="uid://cycu173vdp286" path="res://addons/modules_graph/modules/core/concrete_module/entity_tag.tres" id="2_r7ecy"]
+
+[resource]
+resource_name = "concrete"
+script = ExtResource("1_uidr7")
+tag = ExtResource("2_r7ecy")

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="MgpCellVisualizationSettings" load_steps=3 format=3 uid="uid://ci8mqbwuague4"]
+
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization/cell_content_visualizer/visualization_settings/cell_visualization_settings.gd" id="1_g2pg5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_52a68"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[resource]
+script = ExtResource("1_g2pg5")
+stylebox = SubResource("StyleBoxFlat_52a68")
