@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="MgpModulesRelation" load_steps=2 format=3 uid="uid://chr7lxlk04a6x"]
-
-[ext_resource type="Script" path="res://addons/modules_graph/modules/core/modules_relation/modules_relation.gd" id="1_3su11"]
-
-[resource]
-resource_name = "using"
-script = ExtResource("1_3su11")

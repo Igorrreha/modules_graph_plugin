@@ -1,9 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://1d08ptwy7fsl"]
+[gd_scene load_steps=10 format=3 uid="uid://1d08ptwy7fsl"]
 
-[ext_resource type="Resource" uid="uid://hiu3kuilpycn" path="res://addons/modules_graph/modules/core/abstract_module/entity_tag.tres" id="1_c11dg"]
 [ext_resource type="PackedScene" uid="uid://82421gtvhh2x" path="res://addons/modules_graph/modules/core_visualization/table/table.tscn" id="1_jvc06"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization/cell_content_visualizer/cell_content_visulaizer.gd" id="1_ycry1"]
-[ext_resource type="Resource" uid="uid://cycu173vdp286" path="res://addons/modules_graph/modules/core/concrete_module/entity_tag.tres" id="2_43gom"]
 [ext_resource type="Resource" uid="uid://sqcg4mvbxrkt" path="res://addons/modules_graph/modules/core_visualization/cell/signals_channel.tres" id="2_184r5"]
 [ext_resource type="Resource" uid="uid://bx8og6yr5rjyb" path="res://addons/modules_graph/modules/core_visualization/cell_content_visualizer/visualization_settings_pack.tres" id="3_nccqk"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/common/reactive_collection_update_listener/reactive_collection_update_listener.gd" id="4_g2kxw"]
@@ -15,17 +13,6 @@
 resource_name = "main"
 script/source = "extends Control
 
-
-@export var _entity_tags: Array[MgpEntityTag] 
-
-
-#func _input(event: InputEvent) -> void:
-#	if event.is_action_pressed(\"ui_accept\"):
-#		var new_content = MgpModule.new()
-#		new_content.tag = _entity_tags.pick_random()
-#		new_content.resource_name = new_content.tag.resource_name
-#		($Table as MgpTable).set_content(new_content,
-#			Vector2i(randi() % 10 + 1, randi() % 10 + 1))
 "
 
 [node name="Main" type="Control"]
@@ -36,10 +23,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_0rjxc")
-_entity_tags = Array[Resource("res://addons/modules_graph/modules/common/entity/entity_tag.gd")]([ExtResource("1_c11dg"), ExtResource("2_43gom")])
 
-[node name="Table" parent="." instance=ExtResource("1_jvc06")]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Table" parent="ScrollContainer" instance=ExtResource("1_jvc06")]
+layout_mode = 2
 
 [node name="ModulesCollectionUpdateListener" type="Node" parent="."]
 script = ExtResource("4_g2kxw")
@@ -60,5 +54,5 @@ _root_dir_path = "res://addons/modules_graph/modules"
 script = ExtResource("8_8qwih")
 _collection = ExtResource("9_linrs")
 
-[connection signal="collection_updated" from="ModulesCollectionUpdateListener" to="Table" method="update"]
+[connection signal="collection_updated" from="ModulesCollectionUpdateListener" to="ScrollContainer/Table" method="update"]
 [connection signal="resource_loaded" from="ResourcesFromFsLoading/ResourcesLoader" to="ResourcesFromFsLoading/ModulesCollectionFiller" method="add_item"]
