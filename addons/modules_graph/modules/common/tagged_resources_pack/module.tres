@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_p5vtv"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization/table_position_extension/table_position_extension.gd" id="1_vrnyg"]
 
-[sub_resource type="Resource" id="Resource_dhfbp"]
+[sub_resource type="Resource" id="Resource_4417n"]
 script = ExtResource("1_vrnyg")
 position = Vector2i(4, 1)
 
@@ -11,5 +11,5 @@ position = Vector2i(4, 1)
 resource_name = "tagged_resources_pack"
 script = ExtResource("1_p5vtv")
 extensions = {
-null: SubResource("Resource_dhfbp")
+ExtResource("1_vrnyg"): SubResource("Resource_4417n")
 }

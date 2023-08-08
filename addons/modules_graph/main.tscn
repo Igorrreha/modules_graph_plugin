@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://1d08ptwy7fsl"]
+[gd_scene load_steps=13 format=3 uid="uid://1d08ptwy7fsl"]
 
 [ext_resource type="PackedScene" uid="uid://82421gtvhh2x" path="res://addons/modules_graph/modules/core_visualization/table/table.tscn" id="1_jvc06"]
+[ext_resource type="PackedScene" uid="uid://5nbgkld3linl" path="res://addons/modules_graph/modules/core_visualization_graph/graph/graph.tscn" id="1_mk4vk"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization/cell_content_visualizer/cell_content_visulaizer.gd" id="1_ycry1"]
 [ext_resource type="Resource" uid="uid://sqcg4mvbxrkt" path="res://addons/modules_graph/modules/core_visualization/cell/signals_channel.tres" id="2_184r5"]
 [ext_resource type="Resource" uid="uid://bx8og6yr5rjyb" path="res://addons/modules_graph/modules/core_visualization/cell_content_visualizer/visualization_settings_pack.tres" id="3_nccqk"]
@@ -26,7 +27,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_0rjxc")
 
+[node name="Graph" parent="." instance=ExtResource("1_mk4vk")]
+layout_mode = 1
+
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,10 +65,10 @@ _collection = ExtResource("9_linrs")
 script = ExtResource("9_tcjgn")
 _collection = ExtResource("9_linrs")
 
-[node name="ActionPressHandler" type="Node" parent="ResourcesSaver"]
+[node name="UiAcceptPressHandler" type="Node" parent="ResourcesSaver"]
 script = ExtResource("10_wmmnl")
 _action = &"ui_accept"
 
-[connection signal="collection_updated" from="ModulesCollectionUpdateListener" to="ScrollContainer/Table" method="update"]
+[connection signal="collection_updated" from="ModulesCollectionUpdateListener" to="Graph" method="update"]
 [connection signal="resource_loaded" from="ResourcesFromFsLoading/ResourcesLoader" to="ResourcesFromFsLoading/ModulesCollectionFiller" method="add_item"]
-[connection signal="action_pressed" from="ResourcesSaver/ActionPressHandler" to="ResourcesSaver" method="save"]
+[connection signal="action_pressed" from="ResourcesSaver/UiAcceptPressHandler" to="ResourcesSaver" method="save"]

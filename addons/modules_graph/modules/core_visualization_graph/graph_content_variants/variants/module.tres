@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="MgpGraphContentVariant" load_steps=3 format=3 uid="uid://c87axcfpddosf"]
+
+[ext_resource type="PackedScene" uid="uid://b32jxpdc7res2" path="res://addons/modules_graph/modules/core_visualization_graph/graph_nodes/module_node/module_graph_node.tscn" id="1_id3mk"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/graph_content_variants/graph_content_variant.gd" id="1_p5dny"]
+
+[resource]
+script = ExtResource("1_p5dny")
+content_node_tscn = ExtResource("1_id3mk")

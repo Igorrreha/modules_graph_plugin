@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MgpTaggedResourcesPack" load_steps=5 format=3 uid="uid://cnc74u8mb3wo2"]
+
+[ext_resource type="Resource" uid="uid://c87axcfpddosf" path="res://addons/modules_graph/modules/core_visualization_graph/graph_content_variants/variants/module.tres" id="1_8v2nr"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/common/tagged_resources_pack/tagged_resource.gd" id="2_3274v"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/common/tagged_resources_pack/tagged_resources_pack.gd" id="3_88rx6"]
+
+[sub_resource type="Resource" id="Resource_8e724"]
+script = ExtResource("2_3274v")
+resource = ExtResource("1_8v2nr")
+
+[resource]
+script = ExtResource("3_88rx6")
+_resources = Array[ExtResource("2_3274v")]([SubResource("Resource_8e724")])

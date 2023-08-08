@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_26xr7"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization/table_position_extension/table_position_extension.gd" id="1_m03yh"]
 
-[sub_resource type="Resource" id="Resource_rkaab"]
+[sub_resource type="Resource" id="Resource_qwfpu"]
 script = ExtResource("1_m03yh")
 position = Vector2i(2, 4)
 
@@ -11,5 +11,5 @@ position = Vector2i(2, 4)
 resource_name = "cell"
 script = ExtResource("1_26xr7")
 extensions = {
-null: SubResource("Resource_rkaab")
+ExtResource("1_m03yh"): SubResource("Resource_qwfpu")
 }

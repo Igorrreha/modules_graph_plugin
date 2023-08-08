@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization/table_position_extension/table_position_extension.gd" id="1_3akgs"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_3r3v3"]
 
-[sub_resource type="Resource" id="Resource_epsvr"]
+[sub_resource type="Resource" id="Resource_xl17n"]
 script = ExtResource("1_3akgs")
 position = Vector2i(1, 3)
 
@@ -11,5 +11,5 @@ position = Vector2i(1, 3)
 resource_name = "resources_reactive_collection"
 script = ExtResource("1_3r3v3")
 extensions = {
-null: SubResource("Resource_epsvr")
+ExtResource("1_3akgs"): SubResource("Resource_xl17n")
 }

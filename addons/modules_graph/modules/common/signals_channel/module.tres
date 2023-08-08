@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization/table_position_extension/table_position_extension.gd" id="1_ggdmq"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_j4beq"]
 
-[sub_resource type="Resource" id="Resource_wfl2q"]
+[sub_resource type="Resource" id="Resource_cpnxg"]
 script = ExtResource("1_ggdmq")
 position = Vector2i(3, 3)
 
@@ -11,5 +11,5 @@ position = Vector2i(3, 3)
 resource_name = "signals_channel"
 script = ExtResource("1_j4beq")
 extensions = {
-null: SubResource("Resource_wfl2q")
+ExtResource("1_ggdmq"): SubResource("Resource_cpnxg")
 }

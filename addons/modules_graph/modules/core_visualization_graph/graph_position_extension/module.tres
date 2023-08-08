@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="MgpModule" load_steps=2 format=3 uid="uid://bvygvwbdgifo4"]
+
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_iu05n"]
+
+[resource]
+resource_name = "graph_position_extension"
+script = ExtResource("1_iu05n")
+extensions = {}
