@@ -1,2 +1,2 @@
-class_name MgpSignalsChannel
+class_name SignalsChannel
 extends Resource

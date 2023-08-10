@@ -1,15 +1,21 @@
-[gd_resource type="Resource" script_class="MgpModule" load_steps=4 format=3]
+[gd_resource type="Resource" script_class="MgpModule" load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization/table_position_extension/table_position_extension.gd" id="1_ggdmq"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_j4beq"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/graph_position_extension/graph_position_extension.gd" id="2_yaftp"]
 
 [sub_resource type="Resource" id="Resource_cpnxg"]
 script = ExtResource("1_ggdmq")
 position = Vector2i(3, 3)
 
+[sub_resource type="Resource" id="Resource_tsfue"]
+script = ExtResource("2_yaftp")
+position = Vector2i(-40, 120)
+
 [resource]
 resource_name = "signals_channel"
 script = ExtResource("1_j4beq")
 extensions = {
-ExtResource("1_ggdmq"): SubResource("Resource_cpnxg")
+ExtResource("1_ggdmq"): SubResource("Resource_cpnxg"),
+ExtResource("2_yaftp"): SubResource("Resource_tsfue")
 }

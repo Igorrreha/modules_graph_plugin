@@ -1,15 +1,21 @@
-[gd_resource type="Resource" script_class="MgpModule" load_steps=4 format=3]
+[gd_resource type="Resource" script_class="MgpModule" load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization/table_position_extension/table_position_extension.gd" id="1_t1ajh"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_ugs6m"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/graph_position_extension/graph_position_extension.gd" id="2_yop5h"]
 
 [sub_resource type="Resource" id="Resource_q2dvj"]
 script = ExtResource("1_t1ajh")
 position = Vector2i(3, 1)
 
+[sub_resource type="Resource" id="Resource_d8s12"]
+script = ExtResource("2_yop5h")
+position = Vector2i(640, 320)
+
 [resource]
 resource_name = "reactive_collection_update_listener"
 script = ExtResource("1_ugs6m")
 extensions = {
-ExtResource("1_t1ajh"): SubResource("Resource_q2dvj")
+ExtResource("1_t1ajh"): SubResource("Resource_q2dvj"),
+ExtResource("2_yop5h"): SubResource("Resource_d8s12")
 }

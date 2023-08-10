@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MgpModulesConnection" load_steps=4 format=3 uid="uid://big3hp3py2c2w"]
+
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core/modules_connection/modules_connection.gd" id="1_2ldsl"]
+[ext_resource type="Resource" uid="uid://w14ugvog0txx" path="res://addons/modules_graph/modules/core/modules_connection/module.tres" id="1_u5y3u"]
+[ext_resource type="Resource" path="res://addons/modules_graph/modules/core/module/module.tres" id="2_0siwv"]
+
+[resource]
+script = ExtResource("1_2ldsl")
+module_from = ExtResource("1_u5y3u")
+module_to = ExtResource("2_0siwv")
+extensions = {}

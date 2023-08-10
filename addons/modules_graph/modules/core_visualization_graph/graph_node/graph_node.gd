@@ -2,5 +2,8 @@ class_name MgpGraphNode
 extends GraphNode
 
 
+var content: Entity
+
+
 func setup(content: Entity) -> void:
-	pass
+	self.content = content

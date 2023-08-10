@@ -1,18 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b32jxpdc7res2"]
+[gd_scene load_steps=3 format=3 uid="uid://b32jxpdc7res2"]
 
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/graph_nodes/module_node/module_graph_node.gd" id="1_2e4fl"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/graph_position_extension/graph_position_extension.gd" id="2_slm80"]
 
 [node name="ModuleNode" type="GraphNode"]
-slot/0/left_enabled = false
-slot/0/left_type = 0
-slot/0/left_color = Color(1, 1, 1, 1)
-slot/0/left_icon = null
-slot/0/right_enabled = false
-slot/0/right_type = 0
-slot/0/right_color = Color(1, 1, 1, 1)
-slot/0/right_icon = null
-slot/0/draw_stylebox = true
 script = ExtResource("1_2e4fl")
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 2
+_graph_node_position_extension = ExtResource("2_slm80")
