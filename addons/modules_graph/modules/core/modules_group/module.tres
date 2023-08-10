@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MgpModule" load_steps=6 format=3]
+[gd_resource type="Resource" script_class="MgpModule" load_steps=6 format=3 uid="uid://cjlbm3ybh1uol"]
 
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_cg21l"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization/table_position_extension/table_position_extension.gd" id="1_eufsm"]
@@ -13,7 +13,7 @@ script = ExtResource("2_qujo1")
 position = Vector2i(140, -80)
 
 [resource]
-resource_name = "modules_group_cfg"
+resource_name = "modules_group"
 script = ExtResource("1_cg21l")
 extensions = {
 ExtResource("1_eufsm"): SubResource("Resource_lx8ky"),

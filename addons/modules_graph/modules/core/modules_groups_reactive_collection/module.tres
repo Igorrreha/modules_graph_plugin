@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="MgpModule" load_steps=2 format=3 uid="uid://djfd0y8e0bw7p"]
+
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_883yj"]
+
+[resource]
+resource_name = "modules_groups_reactive_collection"
+script = ExtResource("1_883yj")
+extensions = {}

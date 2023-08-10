@@ -1,4 +1,4 @@
-class_name MgpGraphNodesConnectionManager
+class_name MgpGraphNodesConnectionStorage
 extends Node
 
 

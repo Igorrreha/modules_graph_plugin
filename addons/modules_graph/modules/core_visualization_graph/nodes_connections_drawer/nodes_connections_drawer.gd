@@ -2,7 +2,7 @@ extends Node
 
 
 @export var _graph: GraphEdit
-@export var _connections_manager: MgpGraphNodesConnectionManager
+@export var _connections_storage: MgpGraphNodesConnectionStorage
 
 @export_group("Line")
 @export var _line_width: float
@@ -19,7 +19,7 @@ func _ready() -> void:
 
 
 func _on_graph_draw() -> void:
-	var connections = _connections_manager.connections
+	var connections = _connections_storage.connections
 	
 	var zoom = _graph.zoom
 	var line_width = _line_width * zoom

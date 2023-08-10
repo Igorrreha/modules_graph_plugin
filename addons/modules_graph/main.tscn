@@ -1,9 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://1d08ptwy7fsl"]
+[gd_scene load_steps=15 format=3 uid="uid://1d08ptwy7fsl"]
 
 [ext_resource type="PackedScene" uid="uid://5nbgkld3linl" path="res://addons/modules_graph/modules/core_visualization_graph/graph/graph.tscn" id="1_mk4vk"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/nodes_connections_manager/nodes_connections_manager.gd" id="2_7xs3j"]
-[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/modules_connections_manager/modules_connections_manager.gd" id="3_jfsuv"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/common/reactive_collection_update_listener/reactive_collection_update_listener.gd" id="4_g2kxw"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/modules_connections_appender/modules_connections_appender.gd" id="4_ixlgl"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/graph_nodes_provider/graph_nodes_provider.gd" id="4_njj2y"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/nodes_connections_drawer/nodes_connections_drawer.gd" id="5_i2qcg"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/common/resources_from_fs_loader/resources_from_fs_loader.gd" id="7_dgws0"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://addons/modules_graph/modules/common/resources_saver/resources_saver.gd" id="9_tcjgn"]
 [ext_resource type="Resource" uid="uid://cdr12uuy0n8m5" path="res://addons/modules_graph/modules/core/modules_connections_reactive_collection/connections_reactive_collection.tres" id="10_a2w03"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/common/action_press_handler/action_press_handler.gd" id="10_wmmnl"]
+[ext_resource type="Resource" uid="uid://bbxi5jybqr0jf" path="res://addons/modules_graph/modules/core/modules_groups_reactive_collection/modules_groups.tres" id="11_g22kg"]
 
 [sub_resource type="GDScript" id="GDScript_0rjxc"]
 resource_name = "main"
@@ -31,27 +32,35 @@ script = SubResource("GDScript_0rjxc")
 [node name="Graph" parent="." instance=ExtResource("1_mk4vk")]
 layout_mode = 1
 
-[node name="NodesConnectionsManager" type="Node" parent="Graph"]
-script = ExtResource("2_7xs3j")
-
-[node name="ModulesConnectionsAppender" type="Node" parent="Graph/NodesConnectionsManager" node_paths=PackedStringArray("_graph_nodes_provider", "_nodes_connections_manager")]
-script = ExtResource("3_jfsuv")
-_graph_nodes_provider = NodePath("../../GraphNodesProvider")
-_nodes_connections_manager = NodePath("..")
-
 [node name="GraphNodesProvider" type="Node" parent="Graph" node_paths=PackedStringArray("_graph")]
 script = ExtResource("4_njj2y")
 _graph = NodePath("..")
 
-[node name="NodesConnectionsDrawer" type="Node" parent="Graph" node_paths=PackedStringArray("_graph", "_connections_manager")]
+[node name="NodesConnections" type="Node" parent="Graph"]
+
+[node name="Storage" type="Node" parent="Graph/NodesConnections"]
+script = ExtResource("2_7xs3j")
+
+[node name="ModulesConnectionsAppender" type="Node" parent="Graph/NodesConnections/Storage" node_paths=PackedStringArray("_graph_nodes_provider", "_nodes_connections_storage")]
+script = ExtResource("4_ixlgl")
+_graph_nodes_provider = NodePath("../../../GraphNodesProvider")
+_nodes_connections_storage = NodePath("..")
+
+[node name="NodesConnectionsDrawer" type="Node" parent="Graph/NodesConnections" node_paths=PackedStringArray("_graph", "_connections_storage")]
 script = ExtResource("5_i2qcg")
-_graph = NodePath("..")
-_connections_manager = NodePath("../NodesConnectionsManager")
+_graph = NodePath("../..")
+_connections_storage = NodePath("../Storage")
 _line_width = 3.0
 _line_dash = 6.0
 _line_color = Color(0.862745, 0.376471, 0, 1)
 _arrow_angle_degrees = 60.0
 _arrow_length = 20.0
+
+[node name="NodesGroups" type="Node" parent="Graph"]
+
+[node name="NodesGroupsManager" type="Node" parent="Graph/NodesGroups"]
+
+[node name="NodesGroupsDrawer" type="Node" parent="Graph/NodesGroups"]
 
 [node name="CollectionsUpdateListeners" type="Node" parent="."]
 
@@ -62,6 +71,10 @@ _collection = ExtResource("9_linrs")
 [node name="ModulesConnections" type="Node" parent="CollectionsUpdateListeners"]
 script = ExtResource("4_g2kxw")
 _collection = ExtResource("10_a2w03")
+
+[node name="ModulesGroups" type="Node" parent="CollectionsUpdateListeners"]
+script = ExtResource("4_g2kxw")
+_collection = ExtResource("11_g22kg")
 
 [node name="ResourcesFromFsLoading" type="Node" parent="."]
 
@@ -77,6 +90,10 @@ _collection = ExtResource("9_linrs")
 script = ExtResource("8_8qwih")
 _collection = ExtResource("10_a2w03")
 
+[node name="ModulesGroupsCollectionFiller" type="Node" parent="ResourcesFromFsLoading"]
+script = ExtResource("8_8qwih")
+_collection = ExtResource("11_g22kg")
+
 [node name="ResourcesSaver" type="Node" parent="."]
 script = ExtResource("9_tcjgn")
 _collection = ExtResource("9_linrs")
@@ -86,7 +103,8 @@ script = ExtResource("10_wmmnl")
 _action = &"ui_accept"
 
 [connection signal="collection_updated" from="CollectionsUpdateListeners/Modules" to="Graph" method="update"]
-[connection signal="resource_appended" from="CollectionsUpdateListeners/ModulesConnections" to="Graph/NodesConnectionsManager/ModulesConnectionsAppender" method="append"]
+[connection signal="resource_appended" from="CollectionsUpdateListeners/ModulesConnections" to="Graph/NodesConnections/Storage/ModulesConnectionsAppender" method="append"]
 [connection signal="resource_loaded" from="ResourcesFromFsLoading/ResourcesLoader" to="ResourcesFromFsLoading/ModulesCollectionFiller" method="add_item"]
 [connection signal="resource_loaded" from="ResourcesFromFsLoading/ResourcesLoader" to="ResourcesFromFsLoading/RelationsCollectionFiller" method="add_item"]
+[connection signal="resource_loaded" from="ResourcesFromFsLoading/ResourcesLoader" to="ResourcesFromFsLoading/ModulesGroupsCollectionFiller" method="add_item"]
 [connection signal="action_pressed" from="ResourcesSaver/UiAcceptPressHandler" to="ResourcesSaver" method="save"]
