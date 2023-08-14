@@ -1,5 +1,5 @@
 class_name MgpGraphPositionExtension
-extends Resource
+extends EntityExtension
 
 
 @export var position: Vector2i

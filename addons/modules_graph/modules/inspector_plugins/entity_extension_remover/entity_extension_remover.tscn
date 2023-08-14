@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://ymh7gt4cvgv1"]
+
+[ext_resource type="Script" path="res://addons/modules_graph/modules/inspector_plugins/entity_extension_remover/entity_extension_remover.gd" id="1_yuia3"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/common/resources_from_fs_loader/resources_from_fs_loader.gd" id="2_5b6fa"]
+
+[node name="EntityExtensionInspector" type="VBoxContainer" node_paths=PackedStringArray("_label", "_remove_from_all_modules_button", "_resources_loader")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yuia3")
+_label = NodePath("Label")
+_remove_from_all_modules_button = NodePath("Button")
+_resources_loader = NodePath("ResourcesFromFsLoader")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+text = "Remove from all modules"
+
+[node name="ResourcesFromFsLoader" type="Node" parent="."]
+script = ExtResource("2_5b6fa")
+_root_dir_path = "res://addons/modules_graph/modules"
+_load_on_ready = false

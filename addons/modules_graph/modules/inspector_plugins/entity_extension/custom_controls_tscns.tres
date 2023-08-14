@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ScenesCollection" load_steps=3 format=3 uid="uid://c8ha3ayxnv1gr"]
+
+[ext_resource type="PackedScene" uid="uid://ymh7gt4cvgv1" path="res://addons/modules_graph/modules/inspector_plugins/entity_extension_remover/entity_extension_remover.tscn" id="1_8d1cq"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/common/scenes_collection/scenes_collection.gd" id="2_ebvsf"]
+
+[resource]
+script = ExtResource("2_ebvsf")
+scenes = Array[PackedScene]([ExtResource("1_8d1cq")])

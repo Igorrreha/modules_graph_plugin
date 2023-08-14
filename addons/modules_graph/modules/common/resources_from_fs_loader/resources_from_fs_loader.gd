@@ -1,4 +1,5 @@
-class_name MgpResourcesFromFsLoader
+@tool
+class_name ResourcesFromFsLoader
 extends Node
 
 
@@ -6,10 +7,16 @@ signal resource_loaded(resource: Resource)
 
 
 @export_dir var _root_dir_path: String
+@export var _load_on_ready: bool = true
+
+
+func load_resources() -> void:
+	_load_resources(_root_dir_path)
 
 
 func _ready() -> void:
-	_load_resources(_root_dir_path)
+	if _load_on_ready:
+		_load_resources(_root_dir_path)
 
 
 func _load_resources(root_dir_path: String) -> void:

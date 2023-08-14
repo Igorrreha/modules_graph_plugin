@@ -3,4 +3,4 @@ extends Resource
 
 
 @export var tag: EntityTag
-@export var extensions: Dictionary#[Script, Resource]
+@export var extensions: Dictionary#[Script, EntityExtension]
