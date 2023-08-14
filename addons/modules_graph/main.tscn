@@ -1,17 +1,21 @@
-[gd_scene load_steps=15 format=3 uid="uid://1d08ptwy7fsl"]
+[gd_scene load_steps=20 format=3 uid="uid://1d08ptwy7fsl"]
 
 [ext_resource type="PackedScene" uid="uid://5nbgkld3linl" path="res://addons/modules_graph/modules/core_visualization_graph/graph/graph.tscn" id="1_mk4vk"]
-[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/nodes_connections_manager/nodes_connections_manager.gd" id="2_7xs3j"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/nodes_connections_storage/nodes_connections_storage.gd" id="3_w1raj"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/common/reactive_collection_update_listener/reactive_collection_update_listener.gd" id="4_g2kxw"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/modules_connections_appender/modules_connections_appender.gd" id="4_ixlgl"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/graph_nodes_provider/graph_nodes_provider.gd" id="4_njj2y"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/nodes_connections_drawer/nodes_connections_drawer.gd" id="5_i2qcg"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/nodes_groups_storage/nodes_groups_storage.gd" id="6_gvy2g"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/common/resources_from_fs_loader/resources_from_fs_loader.gd" id="7_dgws0"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/modules_groups_content_storage/modules_groups_content_storage.gd" id="7_lboej"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/common/reactive_collection_filler/reactive_collection_filler.gd" id="8_8qwih"]
 [ext_resource type="Resource" uid="uid://d0qo4wf7es2dy" path="res://addons/modules_graph/modules/core/modules_reactive_collection/modules_reactive_collection.tres" id="9_linrs"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/common/resources_saver/resources_saver.gd" id="9_tcjgn"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/modules_groups_nodes_storage_actualizer/modules_groups_nodes_storage_actualizer.gd" id="10_1j440"]
 [ext_resource type="Resource" uid="uid://cdr12uuy0n8m5" path="res://addons/modules_graph/modules/core/modules_connections_reactive_collection/connections_reactive_collection.tres" id="10_a2w03"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/common/action_press_handler/action_press_handler.gd" id="10_wmmnl"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/nodes_groups_drawer/nodes_groups_drawer.gd" id="11_0gd2d"]
 [ext_resource type="Resource" uid="uid://bbxi5jybqr0jf" path="res://addons/modules_graph/modules/core/modules_groups_reactive_collection/modules_groups.tres" id="11_g22kg"]
 
 [sub_resource type="GDScript" id="GDScript_0rjxc"]
@@ -19,6 +23,8 @@ resource_name = "main"
 script/source = "extends Control
 
 "
+
+[sub_resource type="SystemFont" id="SystemFont_enmr1"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -39,14 +45,14 @@ _graph = NodePath("..")
 [node name="NodesConnections" type="Node" parent="Graph"]
 
 [node name="Storage" type="Node" parent="Graph/NodesConnections"]
-script = ExtResource("2_7xs3j")
+script = ExtResource("3_w1raj")
 
 [node name="ModulesConnectionsAppender" type="Node" parent="Graph/NodesConnections/Storage" node_paths=PackedStringArray("_graph_nodes_provider", "_nodes_connections_storage")]
 script = ExtResource("4_ixlgl")
 _graph_nodes_provider = NodePath("../../../GraphNodesProvider")
 _nodes_connections_storage = NodePath("..")
 
-[node name="NodesConnectionsDrawer" type="Node" parent="Graph/NodesConnections" node_paths=PackedStringArray("_graph", "_connections_storage")]
+[node name="Drawer" type="Node" parent="Graph/NodesConnections" node_paths=PackedStringArray("_graph", "_connections_storage")]
 script = ExtResource("5_i2qcg")
 _graph = NodePath("../..")
 _connections_storage = NodePath("../Storage")
@@ -58,9 +64,28 @@ _arrow_length = 20.0
 
 [node name="NodesGroups" type="Node" parent="Graph"]
 
-[node name="NodesGroupsManager" type="Node" parent="Graph/NodesGroups"]
+[node name="Storage" type="Node" parent="Graph/NodesGroups"]
+script = ExtResource("6_gvy2g")
 
-[node name="NodesGroupsDrawer" type="Node" parent="Graph/NodesGroups"]
+[node name="ModulesGroupsContentStorage" type="Node" parent="Graph/NodesGroups/Storage" node_paths=PackedStringArray("_graph_nodes_provider")]
+script = ExtResource("7_lboej")
+_graph_nodes_provider = NodePath("../../../GraphNodesProvider")
+_modules_collection = ExtResource("9_linrs")
+_groups_collection = ExtResource("11_g22kg")
+
+[node name="ModulesGroupsActualizer" type="Node" parent="Graph/NodesGroups/Storage" node_paths=PackedStringArray("_nodes_groups_storage", "_graph_nodes_provider", "_groups_content_storage")]
+script = ExtResource("10_1j440")
+_nodes_groups_storage = NodePath("..")
+_graph_nodes_provider = NodePath("../../../GraphNodesProvider")
+_groups_content_storage = NodePath("../ModulesGroupsContentStorage")
+
+[node name="Drawer" type="Node" parent="Graph/NodesGroups" node_paths=PackedStringArray("_graph", "_groups_storage")]
+script = ExtResource("11_0gd2d")
+_graph = NodePath("../..")
+_groups_storage = NodePath("../Storage")
+_line_width = 5.0
+_line_color = Color(0.615686, 0.819608, 0.34902, 1)
+_header_font = SubResource("SystemFont_enmr1")
 
 [node name="CollectionsUpdateListeners" type="Node" parent="."]
 

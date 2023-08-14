@@ -3,11 +3,11 @@ extends InspectorCustomControl
 
 
 @export var _label: Label
-@export var _remove_from_all_modules_button: Button
+@export var _remove_from_all_entities_button: Button
 @export var _resources_loader: ResourcesFromFsLoader
 
 var _inspected_object: Script
-var _dependent_modules: Array[MgpModule]
+var _dependent_entities: Array[Entity]
 
 
 func setup(object: Script) -> void:
@@ -24,26 +24,26 @@ func _get_class_name() -> String:
 
 
 func _ready() -> void:
-	_remove_from_all_modules_button.pressed.connect(_on_remove_from_all_modules_pressed)
+	_remove_from_all_entities_button.pressed.connect(_remove_from_all_entities_pressed)
 	_resources_loader.resource_loaded.connect(_on_resource_from_fs_loaded)
 
 
-func _on_remove_from_all_modules_pressed() -> void:
+func _remove_from_all_entities_pressed() -> void:
 	_resources_loader.load_resources()
 	
-	print(_dependent_modules)
+	print(_dependent_entities)
 	
-	for module in _dependent_modules:
-		module.extensions.erase(_inspected_object)
-		ResourceSaver.save(module)
+	for entity in _dependent_entities:
+		entity.extensions.erase(_inspected_object)
+		ResourceSaver.save(entity)
 	
-	_dependent_modules.clear()
+	_dependent_entities.clear()
 
 
 func _on_resource_from_fs_loaded(resource: Resource) -> void:
-	var module = resource as MgpModule
-	if not module:
+	var entity = resource as Entity
+	if not entity:
 		return
 	
-	if module.extensions.has(_inspected_object):
-		_dependent_modules.append(module)
+	if entity.extensions.has(_inspected_object):
+		_dependent_entities.append(entity)

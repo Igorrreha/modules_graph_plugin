@@ -3,6 +3,7 @@ extends ReactiveResource
 
 
 signal resource_appended(resource: Resource)
+signal resource_removed(resource: Resource)
 
 
 @export var item_script: Script
@@ -18,6 +19,12 @@ func try_append(resource: Resource, caller: Callable) -> bool:
 		return true
 	
 	return false
+
+
+func remove(resource: Resource, caller: Callable) -> void:
+	if resources.has(resource):
+		resources.erase(resource)
+		resource_removed.emit()
 
 
 func _match_type(resource: Resource) -> bool:
