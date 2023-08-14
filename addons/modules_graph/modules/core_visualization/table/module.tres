@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="MgpModule" load_steps=2 format=3 uid="uid://d72y8bc5wy5c"]
-
-[ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_f3ext"]
-
-[resource]
-resource_name = "table"
-script = ExtResource("1_f3ext")
-extensions = {}

@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="MgpModule" load_steps=2 format=3 uid="uid://cji8nq64h8wx3"]
-
-[ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_oe0de"]
-
-[resource]
-resource_name = "table_position_extension"
-script = ExtResource("1_oe0de")
-extensions = {}

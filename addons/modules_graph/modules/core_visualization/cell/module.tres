@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="MgpModule" load_steps=2 format=3 uid="uid://jc17fy6vxt33"]
-
-[ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_26xr7"]
-
-[resource]
-resource_name = "cell"
-script = ExtResource("1_26xr7")
-extensions = {}
