@@ -1,21 +1,8 @@
-[gd_resource type="Resource" script_class="MgpModule" load_steps=6 format=3]
+[gd_resource type="Resource" script_class="MgpModule" load_steps=2 format=3 uid="uid://ch4ecs7bewsqd"]
 
-[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization/table_position_extension/table_position_extension.gd" id="1_hg331"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_kupqu"]
-[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/graph_position_extension/graph_position_extension.gd" id="2_msmh3"]
-
-[sub_resource type="Resource" id="Resource_fdr5j"]
-script = ExtResource("1_hg331")
-position = Vector2i(4, 2)
-
-[sub_resource type="Resource" id="Resource_pugop"]
-script = ExtResource("2_msmh3")
-position = Vector2i(222, 355)
 
 [resource]
 resource_name = "module"
 script = ExtResource("1_kupqu")
-extensions = {
-ExtResource("1_hg331"): SubResource("Resource_fdr5j"),
-ExtResource("2_msmh3"): SubResource("Resource_pugop")
-}
+extensions = {}
