@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MgpModulesGroupDrawingSettings" load_steps=3 format=3 uid="uid://tdxmewmf6uv5"]
+
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/nodes_groups_drawer/group_drawing_settings.gd" id="1_2r0qd"]
+
+[sub_resource type="SystemFont" id="SystemFont_enmr1"]
+
+[resource]
+script = ExtResource("1_2r0qd")
+line_width = 4.0
+line_color = Color(0.282353, 0.635294, 0.431373, 1)
+header_font = SubResource("SystemFont_enmr1")
+header_font_size = 16

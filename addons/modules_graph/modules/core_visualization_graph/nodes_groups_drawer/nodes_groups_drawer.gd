@@ -2,15 +2,9 @@ extends Node
 
 
 @export var _graph: GraphEdit
-@export var _groups_storage: MgpGraphNodesGroupsStorage
+@export var _groups_nodes_storage: MgpModulesGroupsNodesStorage
 
-@export_group("Line")
-@export var _line_width: float
-@export var _line_color: Color
-
-@export_group("Header")
-@export var _header_font: Font
-@export var _header_font_size: int = 16
+@export var _default_drawing_settings: MgpModulesGroupDrawingSettings
 
 
 func _ready() -> void:
@@ -18,15 +12,15 @@ func _ready() -> void:
 
 
 func _on_graph_draw() -> void:
-	var groups = _groups_storage.groups
-	
 	var zoom = _graph.zoom
-	var line_width = _line_width * zoom
 	
-	for group_id in groups:
+	for group in _groups_nodes_storage.groups:
+		var drawing_settings = _get_drawing_settings(group)
+		var line_width = drawing_settings.line_width * zoom
+		
 		var top_left_point = Vector2.INF
 		var bottom_right_point = -Vector2.INF
-		for node in groups[group_id]:
+		for node in _groups_nodes_storage.groups[group]:
 			if top_left_point.x > node.position.x:
 				top_left_point.x = node.position.x
 			if bottom_right_point.x < node.position.x + node.size.x * zoom:
@@ -38,7 +32,14 @@ func _on_graph_draw() -> void:
 				bottom_right_point.y = node.position.y + node.size.y * zoom
 		
 		var group_rect = Rect2(top_left_point, bottom_right_point - top_left_point)
-		_graph.draw_rect(group_rect, _line_color, false, line_width)
-		_graph.draw_string(_header_font,
-			group_rect.position - _header_font_size * zoom * Vector2(0, 1),
-			group_id, 0, -1, _header_font_size * zoom)
+		_graph.draw_rect(group_rect, drawing_settings.line_color, false, line_width)
+		_graph.draw_string(drawing_settings.header_font,
+			group_rect.position - drawing_settings.header_font_size * zoom * Vector2(0, 1),
+			group.resource_name, 0, -1, drawing_settings.header_font_size * zoom)
+
+
+func _get_drawing_settings(group: MgpModulesGroup) -> MgpModulesGroupDrawingSettings:
+	if not group.extensions.has(_default_drawing_settings.get_script()):
+		group.extensions[_default_drawing_settings.get_script()] = _default_drawing_settings
+	
+	return group.extensions[_default_drawing_settings.get_script()]

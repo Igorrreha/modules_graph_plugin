@@ -1,4 +1,4 @@
-class_name MgpModulesGroupsContentStorage
+class_name MgpModulesGroupsStorage
 extends Node
 
 
@@ -12,7 +12,7 @@ signal group_removed(group: MgpModulesGroup)
 @export var _groups_collection: ResourcesReactiveCollection
 
 
-var _groups: Dictionary#[MgpNodesGroup, Array[MgpModule]]
+var groups: Dictionary#[MgpNodesGroup, Array[MgpModule]]
 
 
 func _ready() -> void:
@@ -28,24 +28,24 @@ func _on_module_appended(module: MgpModule) -> void:
 		if not module.resource_path.begins_with(group_dir):
 			continue
 		
-		_groups[group].append(module)
-		group_updated.emit(group, _groups[group])
+		groups[group].append(module)
+		group_updated.emit(group, groups[group])
 
 
 func _on_module_removed(module: MgpModule) -> void:
-	for group in _groups:
-		if _groups[group].has(module):
-			_groups[group].erase(module)
-			group_updated.emit(group, _groups[group])
+	for group in groups:
+		if groups[group].has(module):
+			groups[group].erase(module)
+			group_updated.emit(group, groups[group])
 
 
 func _on_group_appended(group: MgpModulesGroup) -> void:
-	_groups[group] = _get_modules_in_group(group)
-	group_appended.emit(group, _groups[group])
+	groups[group] = _get_modules_in_group(group)
+	group_appended.emit(group, groups[group])
 
 
 func _on_group_removed(group: MgpModulesGroup) -> void:
-	_groups.erase(group)
+	groups.erase(group)
 	group_removed.emit(group)
 
 
