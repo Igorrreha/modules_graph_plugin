@@ -40,6 +40,7 @@ func _on_graph_draw() -> void:
 
 func _get_drawing_settings(group: MgpModulesGroup) -> MgpModulesGroupDrawingSettings:
 	if not group.extensions.has(_default_drawing_settings.get_script()):
-		group.extensions[_default_drawing_settings.get_script()] = _default_drawing_settings
+		var new_drawing_settings = _default_drawing_settings.duplicate()
+		group.extensions[_default_drawing_settings.get_script()] = new_drawing_settings
 	
 	return group.extensions[_default_drawing_settings.get_script()]

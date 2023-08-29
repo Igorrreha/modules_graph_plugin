@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MgpModule" load_steps=2 format=3 uid="uid://rywa014xt1jc"]
+[gd_resource type="Resource" script_class="MgpModule" load_steps=2 format=3 uid="uid://jh86rbv7w6w7"]
 
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core/module/module.gd" id="1_cg21l"]
 

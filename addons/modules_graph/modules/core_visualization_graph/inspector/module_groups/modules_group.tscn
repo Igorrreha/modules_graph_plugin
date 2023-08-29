@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://18vdigc7peyd"]
+
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/inspector/module_groups/modules_group.gd" id="1_5f8vp"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/nodes_groups_drawer/group_drawing_settings.gd" id="2_mrqfi"]
+
+[node name="ModulesGroup" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5f8vp")
+_group_drawing_settings_ex = ExtResource("2_mrqfi")
+
+[node name="Name" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Color" type="ColorPickerButton" parent="."]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+color = Color(0.576471, 0.576471, 0.576471, 1)

@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="MgpModulesGroupCfg" load_steps=2 format=3 uid="uid://cil0j816b3ogi"]
+[gd_resource type="Resource" script_class="MgpModulesGroup" load_steps=2 format=3 uid="uid://cil0j816b3ogi"]
 
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core/modules_group/modules_group.gd" id="1_jf1bw"]
 
 [resource]
 resource_name = "core"
 script = ExtResource("1_jf1bw")
+extensions = {}

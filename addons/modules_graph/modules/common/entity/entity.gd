@@ -1,5 +1,5 @@
 class_name Entity
-extends Resource
+extends ReactiveResource
 
 
 @export var tag: EntityTag

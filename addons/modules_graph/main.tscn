@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://1d08ptwy7fsl"]
+[gd_scene load_steps=20 format=3 uid="uid://1d08ptwy7fsl"]
 
 [ext_resource type="PackedScene" uid="uid://5nbgkld3linl" path="res://addons/modules_graph/modules/core_visualization_graph/graph/graph.tscn" id="1_mk4vk"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/nodes_connections_storage/nodes_connections_storage.gd" id="3_w1raj"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/nodes_groups_drawer/nodes_groups_drawer.gd" id="11_0gd2d"]
 [ext_resource type="Resource" uid="uid://tdxmewmf6uv5" path="res://addons/modules_graph/modules/core_visualization_graph/nodes_groups_drawer/default_drawing_settings.tres" id="11_fpqo0"]
 [ext_resource type="Resource" uid="uid://bbxi5jybqr0jf" path="res://addons/modules_graph/modules/core/modules_groups_reactive_collection/modules_groups.tres" id="11_g22kg"]
+[ext_resource type="PackedScene" uid="uid://ctbppmluov6w2" path="res://addons/modules_graph/modules/core_visualization_graph/inspector/module_groups/modules_groups.tscn" id="12_doiet"]
 
 [sub_resource type="GDScript" id="GDScript_0rjxc"]
 resource_name = "main"
@@ -33,25 +34,35 @@ grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_0rjxc")
 
-[node name="Graph" parent="." instance=ExtResource("1_mk4vk")]
+[node name="HBoxContainer" type="HSplitContainer" parent="."]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Graph" parent="HBoxContainer" instance=ExtResource("1_mk4vk")]
+layout_mode = 2
+size_flags_horizontal = 3
+scroll_offset = Vector2(-69, 0)
 use_snap = false
 
-[node name="GraphNodesProvider" type="Node" parent="Graph" node_paths=PackedStringArray("_graph")]
+[node name="GraphNodesProvider" type="Node" parent="HBoxContainer/Graph" node_paths=PackedStringArray("_graph")]
 script = ExtResource("4_njj2y")
 _graph = NodePath("..")
 
-[node name="NodesConnections" type="Node" parent="Graph"]
+[node name="NodesConnections" type="Node" parent="HBoxContainer/Graph"]
 
-[node name="Storage" type="Node" parent="Graph/NodesConnections"]
+[node name="Storage" type="Node" parent="HBoxContainer/Graph/NodesConnections"]
 script = ExtResource("3_w1raj")
 
-[node name="ModulesConnectionsAppender" type="Node" parent="Graph/NodesConnections/Storage" node_paths=PackedStringArray("_graph_nodes_provider", "_nodes_connections_storage")]
+[node name="ModulesConnectionsAppender" type="Node" parent="HBoxContainer/Graph/NodesConnections/Storage" node_paths=PackedStringArray("_graph_nodes_provider", "_nodes_connections_storage")]
 script = ExtResource("4_ixlgl")
 _graph_nodes_provider = NodePath("../../../GraphNodesProvider")
 _nodes_connections_storage = NodePath("..")
 
-[node name="Drawer" type="Node" parent="Graph/NodesConnections" node_paths=PackedStringArray("_graph", "_connections_storage")]
+[node name="Drawer" type="Node" parent="HBoxContainer/Graph/NodesConnections" node_paths=PackedStringArray("_graph", "_connections_storage")]
 script = ExtResource("5_i2qcg")
 _graph = NodePath("../..")
 _connections_storage = NodePath("../Storage")
@@ -61,24 +72,32 @@ _line_color = Color(0.862745, 0.376471, 0, 1)
 _arrow_angle_degrees = 60.0
 _arrow_length = 20.0
 
-[node name="NodesGroups" type="Node" parent="Graph"]
+[node name="NodesGroups" type="Node" parent="HBoxContainer/Graph"]
 
-[node name="ModulesGroupsStorage" type="Node" parent="Graph/NodesGroups" node_paths=PackedStringArray("_graph_nodes_provider")]
+[node name="ModulesGroupsStorage" type="Node" parent="HBoxContainer/Graph/NodesGroups" node_paths=PackedStringArray("_graph_nodes_provider")]
 script = ExtResource("6_c4jm7")
 _graph_nodes_provider = NodePath("../../GraphNodesProvider")
 _modules_collection = ExtResource("9_linrs")
 _groups_collection = ExtResource("11_g22kg")
 
-[node name="ModulesGroupsNodesStorage" type="Node" parent="Graph/NodesGroups" node_paths=PackedStringArray("_graph_nodes_provider", "_groups_storage")]
+[node name="ModulesGroupsNodesStorage" type="Node" parent="HBoxContainer/Graph/NodesGroups" node_paths=PackedStringArray("_graph_nodes_provider", "_groups_storage")]
 script = ExtResource("9_pjepm")
 _graph_nodes_provider = NodePath("../../GraphNodesProvider")
 _groups_storage = NodePath("../ModulesGroupsStorage")
 
-[node name="Drawer" type="Node" parent="Graph/NodesGroups/ModulesGroupsNodesStorage" node_paths=PackedStringArray("_graph", "_groups_nodes_storage")]
+[node name="Drawer" type="Node" parent="HBoxContainer/Graph/NodesGroups/ModulesGroupsNodesStorage" node_paths=PackedStringArray("_graph", "_groups_nodes_storage")]
 script = ExtResource("11_0gd2d")
 _graph = NodePath("../../..")
 _groups_nodes_storage = NodePath("..")
 _default_drawing_settings = ExtResource("11_fpqo0")
+
+[node name="Inspector" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="ModulesGroups" parent="HBoxContainer/Inspector" node_paths=PackedStringArray("_graph", "_groups_storage") instance=ExtResource("12_doiet")]
+layout_mode = 2
+_graph = NodePath("../../Graph")
+_groups_storage = NodePath("../../Graph/NodesGroups/ModulesGroupsStorage")
 
 [node name="CollectionsUpdateListeners" type="Node" parent="."]
 
@@ -114,14 +133,14 @@ _collection = ExtResource("11_g22kg")
 
 [node name="ResourcesSaver" type="Node" parent="."]
 script = ExtResource("9_tcjgn")
-_collection = ExtResource("9_linrs")
+_collections = Array[Resource("res://addons/modules_graph/modules/common/resources_reactive_collection/resources_reactive_collection.gd")]([ExtResource("9_linrs"), ExtResource("11_g22kg")])
 
 [node name="UiAcceptPressHandler" type="Node" parent="ResourcesSaver"]
 script = ExtResource("10_wmmnl")
 _action = &"ui_accept"
 
-[connection signal="collection_updated" from="CollectionsUpdateListeners/Modules" to="Graph" method="update"]
-[connection signal="resource_appended" from="CollectionsUpdateListeners/ModulesConnections" to="Graph/NodesConnections/Storage/ModulesConnectionsAppender" method="append"]
+[connection signal="collection_updated" from="CollectionsUpdateListeners/Modules" to="HBoxContainer/Graph" method="update"]
+[connection signal="resource_appended" from="CollectionsUpdateListeners/ModulesConnections" to="HBoxContainer/Graph/NodesConnections/Storage/ModulesConnectionsAppender" method="append"]
 [connection signal="resource_loaded" from="ResourcesFromFsLoading/ResourcesLoader" to="ResourcesFromFsLoading/ModulesCollectionFiller" method="add_item"]
 [connection signal="resource_loaded" from="ResourcesFromFsLoading/ResourcesLoader" to="ResourcesFromFsLoading/RelationsCollectionFiller" method="add_item"]
 [connection signal="resource_loaded" from="ResourcesFromFsLoading/ResourcesLoader" to="ResourcesFromFsLoading/ModulesGroupsCollectionFiller" method="add_item"]
