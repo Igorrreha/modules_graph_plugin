@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://1d08ptwy7fsl"]
+[gd_scene load_steps=21 format=3 uid="uid://1d08ptwy7fsl"]
 
 [ext_resource type="PackedScene" uid="uid://5nbgkld3linl" path="res://addons/modules_graph/modules/core_visualization_graph/graph/graph.tscn" id="1_mk4vk"]
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/nodes_connections_storage/nodes_connections_storage.gd" id="3_w1raj"]
@@ -17,7 +17,8 @@
 [ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/nodes_groups_drawer/nodes_groups_drawer.gd" id="11_0gd2d"]
 [ext_resource type="Resource" uid="uid://tdxmewmf6uv5" path="res://addons/modules_graph/modules/core_visualization_graph/nodes_groups_drawer/default_drawing_settings.tres" id="11_fpqo0"]
 [ext_resource type="Resource" uid="uid://bbxi5jybqr0jf" path="res://addons/modules_graph/modules/core/modules_groups_reactive_collection/modules_groups.tres" id="11_g22kg"]
-[ext_resource type="PackedScene" uid="uid://ctbppmluov6w2" path="res://addons/modules_graph/modules/core_visualization_graph/inspector/module_groups/modules_groups.tscn" id="12_doiet"]
+[ext_resource type="PackedScene" uid="uid://ctbppmluov6w2" path="res://addons/modules_graph/modules/core_visualization_graph/inspector/modules_groups/modules_groups.tscn" id="12_doiet"]
+[ext_resource type="PackedScene" uid="uid://c0dncdobt4ca7" path="res://addons/modules_graph/modules/core_visualization_graph/inspector/module/module.tscn" id="13_jlbdu"]
 
 [sub_resource type="GDScript" id="GDScript_0rjxc"]
 resource_name = "main"
@@ -93,6 +94,10 @@ _default_drawing_settings = ExtResource("11_fpqo0")
 
 [node name="Inspector" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
+
+[node name="Module" parent="HBoxContainer/Inspector" node_paths=PackedStringArray("_graph") instance=ExtResource("13_jlbdu")]
+layout_mode = 2
+_graph = NodePath("../../Graph")
 
 [node name="ModulesGroups" parent="HBoxContainer/Inspector" node_paths=PackedStringArray("_graph", "_groups_storage") instance=ExtResource("12_doiet")]
 layout_mode = 2

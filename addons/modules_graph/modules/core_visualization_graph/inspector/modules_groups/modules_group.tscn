@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://18vdigc7peyd"]
 
-[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/inspector/module_groups/modules_group.gd" id="1_5f8vp"]
-[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/nodes_groups_drawer/group_drawing_settings.gd" id="2_mrqfi"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/inspector/modules_groups/modules_group.gd" id="1_t3hw0"]
+[ext_resource type="Script" path="res://addons/modules_graph/modules/core_visualization_graph/nodes_groups_drawer/group_drawing_settings.gd" id="2_3sggc"]
 
 [node name="ModulesGroup" type="HBoxContainer"]
 anchors_preset = 15
@@ -9,8 +9,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_5f8vp")
-_group_drawing_settings_ex = ExtResource("2_mrqfi")
+script = ExtResource("1_t3hw0")
+_group_drawing_settings_ex = ExtResource("2_3sggc")
 
 [node name="Name" type="LineEdit" parent="."]
 layout_mode = 2

@@ -7,8 +7,19 @@ var _content: Entity
 
 func setup(content: Entity) -> void:
 	super.setup(content)
+	
+	if _content:
+		_content.remove_callback("resource_name", _on_content_name_updated)
+	
 	_content = content
-	title = _content.resource_name
+	_content.bind("resource_name", _on_content_name_updated)
+	
+	_on_content_name_updated()
+
+
+func _on_content_name_updated() -> void:
+	if _content:
+		title = _content.resource_name
 
 
 func _ready() -> void:
